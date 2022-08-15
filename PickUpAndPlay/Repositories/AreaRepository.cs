@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PickUpAndPlay.Repositories
 {
-    public class AreaRepository : BaseRepository
+    public class AreaRepository : BaseRepository, IAreaRepository
     {
         public AreaRepository(IConfiguration configuration) : base(configuration) { }
 
