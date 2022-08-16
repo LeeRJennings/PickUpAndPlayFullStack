@@ -32,6 +32,7 @@ namespace PickUpAndPlay
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IAreaRepository, AreaRepository>();
             services.AddTransient<ISkillLevelRepository, SkillLevelRepository>();
+            services.AddTransient<IGameRepository, GameRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
