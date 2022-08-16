@@ -26,6 +26,17 @@ namespace PickUpAndPlay.Controllers
         {
             return Ok(_gameRepo.GetAllPreviousGames());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var game = _gameRepo.GetGameById(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            return Ok(game);
+        }
     }
 
 }
