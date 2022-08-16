@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PickUpAndPlay.Models;
 using PickUpAndPlay.Repositories;
+using System;
+using System.Security.Claims;
 
 namespace PickUpAndPlay.Controllers
 {
@@ -9,10 +12,12 @@ namespace PickUpAndPlay.Controllers
     public class GameController : ControllerBase
     {
         private readonly IGameRepository _gameRepo;
+        private readonly IUserProfileRepository _userProfileRepo;
 
-        public GameController(IGameRepository gameRepo)
+        public GameController(IGameRepository gameRepo, IUserProfileRepository userProfileRepo)
         {
             _gameRepo = gameRepo;
+            _userProfileRepo = userProfileRepo;
         }
 
         [HttpGet("Upcoming")]
@@ -37,6 +42,21 @@ namespace PickUpAndPlay.Controllers
             }
             return Ok(game);
         }
-    }
 
+        [HttpPost]
+        public IActionResult Post(Game game)
+        {
+            var currentUser = GetCurrentUserProfile();
+            game.UserProfileId = currentUser.Id;
+            game.CreatedDateTime = DateTime.Now;
+            _gameRepo.AddGame(game);
+            return Ok(game);
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
+        }
+    }
 }

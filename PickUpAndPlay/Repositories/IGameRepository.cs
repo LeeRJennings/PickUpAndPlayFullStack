@@ -8,5 +8,6 @@ namespace PickUpAndPlay.Repositories
         List<Game> GetAllPreviousGames();
         List<Game> GetAllUpcomingGames();
         Game GetGameById(int id);
+        void AddGame(Game game);
     }
 }
