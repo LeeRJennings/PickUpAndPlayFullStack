@@ -24,7 +24,7 @@ export const Welcome = () => {
             >
                 <CardBody>
                     <CardTitle tag="h3">
-                        Welcome {user.firstName}!
+                        Welcome {user.fullName}!
                     </CardTitle>
                 </CardBody>
             </Card>
