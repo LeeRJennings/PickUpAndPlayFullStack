@@ -53,6 +53,33 @@ namespace PickUpAndPlay.Controllers
             return Ok(game);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Game game)
+        {
+            var currentUser = GetCurrentUserProfile();
+
+            if (currentUser.IsAdmin)
+            {
+                _gameRepo.UpdateGame(game);
+                return NoContent();
+            }
+            else
+            {
+                if (game.UserProfileId != currentUser.Id)
+                {
+                    return BadRequest();
+                }
+
+                if (id != game.Id)
+                {
+                    return BadRequest();
+                }
+
+                _gameRepo.UpdateGame(game);
+                return NoContent();
+            }
+        }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
