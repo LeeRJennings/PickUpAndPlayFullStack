@@ -256,5 +256,53 @@ namespace PickUpAndPlay.Repositories
                 }
             }
         }
+
+        public void UpdateGame(Game game)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"UPDATE Game
+                                        SET Title = @Title,
+                                            ParkName = @ParkName,
+                                            Address = @Address,
+                                            Date = @Date,
+                                            Time = @Time,
+                                            AreaId = @AreaId,
+                                            SkillLevelId = @SkillLevelId,
+                                            CleatsRequired = @CleatsRequired,
+                                            WhiteAndDarkShirt = @WhiteAndDarkShirt,
+                                            BarefootFriendly = @BarefootFriendly,
+                                            DogsAllowed = @DogsAllowed,
+                                            PlaygroundNearby = @PlaygroundNearby,
+                                            DrinkingWaterNearby = @DrinkingWaterNearby,
+                                            AllAges = @AllAges,
+                                            EighteenPlus = @EighteenPlus
+                                        WHERE Id = @Id";
+                    DbUtils.AddParameter(cmd, "@Title", game.Title);
+                    DbUtils.AddParameter(cmd, "@ParkName", game.ParkName);
+                    DbUtils.AddParameter(cmd, "@Address", game.Address);
+                    DbUtils.AddParameter(cmd, "@Date", game.Date);
+                    DbUtils.AddParameter(cmd, "@Time", game.Time);
+                    DbUtils.AddParameter(cmd, "@AreaId", game.AreaId);
+                    DbUtils.AddParameter(cmd, "@SkillLevelId", game.SkillLevelId);
+                    DbUtils.AddParameter(cmd, "@CreatedDateTime", game.CreatedDateTime);
+                    DbUtils.AddParameter(cmd, "@CleatsRequired", game.CleatsRequired);
+                    DbUtils.AddParameter(cmd, "@WhiteAndDarkShirt", game.WhiteAndDarkShirt);
+                    DbUtils.AddParameter(cmd, "@BarefootFriendly", game.BarefootFriendly);
+                    DbUtils.AddParameter(cmd, "@DogsAllowed", game.DogsAllowed);
+                    DbUtils.AddParameter(cmd, "@PlaygroundNearby", game.PlaygroundNearby);
+                    DbUtils.AddParameter(cmd, "@BathroomsNearby", game.BathroomsNearby);
+                    DbUtils.AddParameter(cmd, "@DrinkingWaterNearby", game.DrinkingWaterNearby);
+                    DbUtils.AddParameter(cmd, "@AllAges", game.AllAges);
+                    DbUtils.AddParameter(cmd, "@EighteenPlus", game.EighteenPlus);
+                    DbUtils.AddParameter(cmd, "@Id", game.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
