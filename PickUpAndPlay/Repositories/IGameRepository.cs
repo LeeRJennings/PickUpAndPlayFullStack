@@ -10,5 +10,6 @@ namespace PickUpAndPlay.Repositories
         Game GetGameById(int id);
         void AddGame(Game game);
         void UpdateGame(Game game);
+        void DeleteGame(int id);
     }
 }

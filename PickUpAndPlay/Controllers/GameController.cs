@@ -80,6 +80,29 @@ namespace PickUpAndPlay.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var currentGame = _gameRepo.GetGameById(id);
+            var currentUser = GetCurrentUserProfile();
+
+            if (currentUser.IsAdmin)
+            {
+                _gameRepo.DeleteGame(id);
+                return NoContent();
+            }
+            else
+            {
+                if (currentGame.UserProfileId != currentUser.Id)
+                {
+                    return BadRequest();
+                }
+
+                _gameRepo.DeleteGame(id);
+                return NoContent();
+            }
+        }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
