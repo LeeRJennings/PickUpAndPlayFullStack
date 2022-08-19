@@ -21,10 +21,10 @@ namespace PickUpAndPlay.Models
         public string Address { get; set; }
         
         [Required]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         
         [Required]
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
         
         [Required]
         public int AreaId { get; set; }

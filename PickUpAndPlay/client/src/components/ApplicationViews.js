@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AllGames } from "./Games/AllGames";
+import { GameForm } from "./Games/GameForm";
 import Login from "./Login";
 import Register from "./Register";
 import { Welcome } from "./Welcome";
@@ -12,6 +13,7 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="games">
           <Route index element={isLoggedIn ? <AllGames /> : <Navigate to="/login" />} />
+          <Route path="create" element={isLoggedIn ? <GameForm /> : <Navigate to="/login" />} />
         </Route>
         
         <Route path="login" element={<Login />} />
