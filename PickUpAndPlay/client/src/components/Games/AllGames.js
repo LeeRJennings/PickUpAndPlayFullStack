@@ -9,6 +9,8 @@ export const AllGames = () => {
     const [user, setUser] = useState({})
     const [upcomingOrPrevious, setUpcomingOrPrevious] = useState(false)
 
+    const navigate = useNavigate()
+
     const getUpcomingGames = () => {
         getAllUpcomingGames()
         .then(games => setGames(games))
@@ -57,6 +59,7 @@ export const AllGames = () => {
 
     return (
         <>
+        <button className="addGameButton" type="button" onClick={() => navigate("/games/create")}>ADD GAME</button>
         {upcomingAndPreviousButtonRender()}
         <div className="gameCards">
             {games.map(game => 
