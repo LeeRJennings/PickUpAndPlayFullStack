@@ -26,7 +26,7 @@ set identity_insert [UserProfile] on;
 INSERT INTO "UserProfile" ("Id", "FireBaseUserId", "FirstName", "LastName", "Email", "IsAdmin", "IsActive")
 VALUES
 (1, '4MEM0lUG4OgHPm0dQ3WN5S4VpnN2', 'Lee', 'Jennings', 'leerjennings@outlook.com', 1, 1),
-(2, 'qq12xt0YCrMVSyaY2nIrb9pwnV23', 'Kareem', 'Abdul-Jabaar', 'kaj@gmail.com', 0, 1),
+(2, 'qq12xt0YCrMVSyaY2nIrb9pwnV23', 'Kareem', 'Abdul-Jabbar', 'kaj@gmail.com', 0, 1),
 (3, 'bW6RcEbB9USBfaiVpPBwzsTMqMj2', 'Guy', 'Dude', 'guy@gmail.com', 0, 0)
 set identity_insert [UserProfile] off;
 
